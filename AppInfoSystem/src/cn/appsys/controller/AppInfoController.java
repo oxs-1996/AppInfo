@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sun.istack.internal.logging.Logger;
 
@@ -70,8 +72,6 @@ public class AppInfoController {
 				e.printStackTrace();
 			}
 		}
-		
-		
 		
 		Integer queryStatus = null;
 		if(_queryStatus != null && !("").equals(_queryStatus)){
@@ -139,6 +139,23 @@ public class AppInfoController {
 		return dataDictionaryList;
 	}
 	
+	/**
+	 * 根据parentId查询出相应的分类级别列表
+	 * @param pid
+	 * @return
+	 */
+	@RequestMapping(value="/categorylevellist",method=RequestMethod.GET)
+	@ResponseBody
+	public List<AppCategory> getAppCategoryList(@RequestParam("pid") String pid){
+		logger.info("getAppCategoryList-----pid----------"+pid);
+		if(("").equals(pid)) pid = null;
+		return getCategoryList(pid);
+	}
 	
+	public List<AppCategory> getCategoryList(String pid){
+		List<AppCategory> categroyLevelList = null;
+		categroyLevelList = appCategoryService.getAppCategoryListByParentId(pid==""?null:Integer.parseInt(pid));
+		return categroyLevelList;
+	}
 	
 }
