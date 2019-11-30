@@ -13,7 +13,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<form method="post" action="list">
+				<form method="post" action="list.do">
 					<input type="hidden" name="pageIndex" value="1" />
 			    <ul>
 					<li>
@@ -159,7 +159,7 @@
 										最新版本号</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										style="width: 124px;"
+										style="width: 134px;"
 										aria-label="Last name: activate to sort column ascending">
 										操作</th>
 								</tr>
@@ -168,7 +168,7 @@
 								<c:forEach var="appInfo" items="${appInfoList }" varStatus="status">
 									<tr role="row" class="odd">
 										<td tabindex="0" class="sorting_1">${appInfo.softwareName}</td>
-										<td>${appInfo.APKName }</td>
+										<td>${appInfo.apkName }</td>
 										<td>${appInfo.softwareSize }</td>
 										<td>${appInfo.flatformName }</td>
 										<td>${appInfo.categoryLevel1Name } -> ${appInfo.categoryLevel2Name } -> ${appInfo.categoryLevel3Name }</td>
